@@ -153,9 +153,9 @@
         </pluginManagement>
     </build>
     <distributionManagement>
-        <repository>
+        <snapshotRepository>
             <id>sean</id>
-            <url>http://thoughtfulcraftsmanship.com/nexus/content/repositories/sean/</url>
-        </repository>
+            <url>http://thoughtfulcraftsmanship.com/nexus/content/repositories/sean</url>
+        </snapshotRepository>
     </distributionManagement>
 </project>

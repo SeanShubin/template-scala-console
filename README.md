@@ -1,7 +1,9 @@
-Scala Console Template
+Generated from Scala Console Template
 ===
 
 Skeleton for Scala Console Application
+
+Template for use with [generate-from-template](https://github.com/SeanShubin/generate-from-template)
 
 Usage (says hello to target)
 
