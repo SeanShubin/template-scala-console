@@ -1,8 +1,14 @@
 package com.seanshubin.template.scala.console.core
 
-class LauncherImpl(commandLineArguments: Seq[String], createRunner: String => Runner) extends Launcher {
+class LauncherImpl(args: Seq[String],
+                   configurationFactory: ConfigurationFactory,
+                   runnerFactory: RunnerFactory,
+                   notifications: Notifications) extends Launcher {
   override def launch(): Unit = {
-    val runner = createRunner(commandLineArguments(0))
-    runner.run()
+    val errorOrConfiguration = configurationFactory.validate(args)
+    errorOrConfiguration match {
+      case Left(error) => notifications.configurationError(error)
+      case Right(configuration) => runnerFactory.createRunner(configuration).run()
+    }
   }
 }
