@@ -1,11 +1,10 @@
 package com.seanshubin.template.scala.console.core
 
 import org.scalatest.FunSuite
-import org.scalatest.mock.EasyMockSugar
 
 import scala.collection.mutable.ArrayBuffer
 
-class RunnerTest extends FunSuite with EasyMockSugar {
+class RunnerTest extends FunSuite {
   test("application flow") {
     val lines = new ArrayBuffer[String]()
     val emitLine: String => Unit = line => lines.append(line)
