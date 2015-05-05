@@ -11,7 +11,6 @@ class LauncherImplTest extends FunSuite {
     assert(helper.sideEffects.size === 2)
     assert(helper.sideEffects(0) ===("notifications.effectiveConfiguration", Configuration("world")))
     assert(helper.sideEffects(1) ===("runner.run", ()))
-
   }
 
   test("invalid configuration") {
