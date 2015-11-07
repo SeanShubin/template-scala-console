@@ -4,10 +4,10 @@ import org.scalatest.FunSuite
 
 import scala.collection.mutable.ArrayBuffer
 
-class LauncherImplTest extends FunSuite {
+class ConfigurationLoaderTest extends FunSuite {
   test("valid configuration") {
     val helper = new Helper(validationResult = Right(Configuration("world")))
-    helper.launcher.launch()
+    helper.launcher.run()
     assert(helper.sideEffects.size === 2)
     assert(helper.sideEffects(0) ===("notifications.effectiveConfiguration", Configuration("world")))
     assert(helper.sideEffects(1) ===("runner.run", ()))
@@ -15,7 +15,7 @@ class LauncherImplTest extends FunSuite {
 
   test("invalid configuration") {
     val helper = new Helper(validationResult = Left(Seq("error")))
-    helper.launcher.launch()
+    helper.launcher.run()
     assert(helper.sideEffects.size === 1)
     assert(helper.sideEffects(0) ===("notifications.configurationError", Seq("error")))
   }
@@ -24,9 +24,9 @@ class LauncherImplTest extends FunSuite {
     val sideEffects: ArrayBuffer[(String, Any)] = new ArrayBuffer()
     val configurationFactory = new FakeConfigurationFactory(Seq("foo.txt"), validationResult)
     val runner = new FakeRunner(sideEffects)
-    val runnerFactory = new FakeRunnerFactory(runner)
+    val createRunner: Configuration => Runnable = (theConfiguration) => runner
     val notifications = new FakeNotification(sideEffects)
-    val launcher = new LauncherImpl(Seq("foo.txt"), configurationFactory, runnerFactory, notifications)
+    val launcher = new ConfigurationLoader(Seq("foo.txt"), configurationFactory, createRunner, notifications)
   }
 
   class FakeConfigurationFactory(expectedArgs: Seq[String], result: Either[Seq[String], Configuration]) extends ConfigurationFactory {
@@ -48,12 +48,8 @@ class LauncherImplTest extends FunSuite {
     override def topLevelException(exception: Throwable): Unit = append("topLevelException", exception)
   }
 
-  class FakeRunner(sideEffects: ArrayBuffer[(String, Any)]) extends Runner {
+  class FakeRunner(sideEffects: ArrayBuffer[(String, Any)]) extends Runnable {
     override def run(): Unit = sideEffects.append(("runner.run", ()))
-  }
-
-  class FakeRunnerFactory(runner: Runner) extends RunnerFactory {
-    override def createRunner(configuration: Configuration): Runner = runner
   }
 
 }
