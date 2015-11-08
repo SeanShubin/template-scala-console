@@ -1,5 +1,7 @@
 package com.seanshubin.template.scala.console.core
 
+import java.time.Duration
+
 import org.scalatest.FunSuite
 
 import scala.collection.mutable.ArrayBuffer
@@ -46,6 +48,8 @@ class ConfigurationLoaderTest extends FunSuite {
     override def effectiveConfiguration(configuration: Configuration): Unit = append("effectiveConfiguration", configuration)
 
     override def topLevelException(exception: Throwable): Unit = append("topLevelException", exception)
+
+    override def timeTaken(duration: Duration): Unit = append("timeTaken", duration)
   }
 
   class FakeRunner(sideEffects: ArrayBuffer[(String, Any)]) extends Runnable {

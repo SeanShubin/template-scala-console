@@ -1,6 +1,7 @@
 package com.seanshubin.template.scala.console.core
 
 import java.io.{PrintWriter, StringWriter}
+import java.time.Duration
 
 import com.seanshubin.devon.core.devon.DevonMarshaller
 
@@ -27,5 +28,9 @@ class LineEmittingNotifications(devonMarshaller: DevonMarshaller, emit: String =
     val s = stringWriter.toString
     val lines = s.split( """\r\n|\r|\n""").toSeq
     lines
+  }
+
+  override def timeTaken(duration: Duration): Unit = {
+    emit(DurationFormat.NanosecondsFormat.format(duration.toNanos))
   }
 }
