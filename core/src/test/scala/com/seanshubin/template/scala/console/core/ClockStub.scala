@@ -2,7 +2,7 @@ package com.seanshubin.template.scala.console.core
 
 import java.time.{Clock, Instant, ZoneId}
 
-class FakeClock(values: Long*) extends Clock {
+class ClockStub(values: Long*) extends Clock {
   private var valueIndex = 0
 
   override def getZone: ZoneId = ???

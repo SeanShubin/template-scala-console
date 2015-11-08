@@ -12,7 +12,7 @@ class RunnerTest extends FunSuite {
     val lines = new ArrayBuffer[String]()
     val emitLine: String => Unit = line => lines.append(line)
     val dummyDevonMarshaller: DevonMarshaller = null
-    val clock: Clock = new FakeClock(1000, 11000)
+    val clock: Clock = new ClockStub(1000, 11000)
     val timer: Timer = new TimerImpl(clock)
     val notifications: Notifications = new LineEmittingNotifications(dummyDevonMarshaller, emitLine)
     val runner: Runnable = new RunnerImpl("world", emitLine, timer, notifications)
