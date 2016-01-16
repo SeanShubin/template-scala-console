@@ -2,8 +2,8 @@ package com.seanshubin.template.scala.console.core
 
 import java.time.{Clock, Duration}
 
-class TimerImpl(clock: Clock) extends Timer {
-  override def measureTime(block: => Unit): Duration = {
+class MeasureTime(clock: Clock) extends (( => Unit) => Duration) {
+  override def apply(block: => Unit): Duration = {
     val before = clock.instant()
     block
     val after = clock.instant()

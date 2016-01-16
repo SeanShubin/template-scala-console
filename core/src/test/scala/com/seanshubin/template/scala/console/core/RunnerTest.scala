@@ -1,6 +1,6 @@
 package com.seanshubin.template.scala.console.core
 
-import java.time.Clock
+import java.time.{Duration, Clock}
 
 import com.seanshubin.devon.core.devon.DevonMarshaller
 import org.scalatest.FunSuite
@@ -13,9 +13,9 @@ class RunnerTest extends FunSuite {
     val emitLine: String => Unit = line => lines.append(line)
     val dummyDevonMarshaller: DevonMarshaller = null
     val clock: Clock = new ClockStub(1000, 11000)
-    val timer: Timer = new TimerImpl(clock)
+    val measureTime: (( => Unit) => Duration) = new MeasureTime(clock)
     val notifications: Notifications = new LineEmittingNotifications(dummyDevonMarshaller, emitLine)
-    val runner: Runnable = new RunnerImpl("world", emitLine, timer, notifications)
+    val runner: Runnable = new Runner("world", emitLine, measureTime, notifications)
     runner.run()
     assert(lines.size === 2)
     assert(lines(0) === "Hello, world!")
