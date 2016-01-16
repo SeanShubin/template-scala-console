@@ -1,11 +1,11 @@
 package com.seanshubin.template.scala.console.core
 
 class ConfigurationLoader(args: Seq[String],
-                          configurationFactory: ConfigurationFactory,
+                          validateConfiguration: Seq[String] => Either[Seq[String], Configuration],
                           createRunner: Configuration => Runnable,
                           notifications: Notifications) extends Runnable {
   override def run(): Unit = {
-    val errorOrConfiguration = configurationFactory.validate(args)
+    val errorOrConfiguration = validateConfiguration(args)
     errorOrConfiguration match {
       case Left(error) => notifications.configurationError(error)
       case Right(configuration) =>

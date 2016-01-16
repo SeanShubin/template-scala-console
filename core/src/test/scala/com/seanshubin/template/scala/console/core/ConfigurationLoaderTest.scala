@@ -24,15 +24,15 @@ class ConfigurationLoaderTest extends FunSuite {
 
   class Helper(validationResult: Either[Seq[String], Configuration]) {
     val sideEffects: ArrayBuffer[(String, Any)] = new ArrayBuffer()
-    val configurationFactory = new FakeConfigurationFactory(Seq("foo.txt"), validationResult)
+    val validateConfiguration = new FakeValidateConfiguration(Seq("foo.txt"), validationResult)
     val runner = new FakeRunner(sideEffects)
     val createRunner: Configuration => Runnable = (theConfiguration) => runner
     val notifications = new FakeNotification(sideEffects)
-    val launcher = new ConfigurationLoader(Seq("foo.txt"), configurationFactory, createRunner, notifications)
+    val launcher = new ConfigurationLoader(Seq("foo.txt"), validateConfiguration, createRunner, notifications)
   }
 
-  class FakeConfigurationFactory(expectedArgs: Seq[String], result: Either[Seq[String], Configuration]) extends ConfigurationFactory {
-    override def validate(args: Seq[String]): Either[Seq[String], Configuration] = {
+  class FakeValidateConfiguration(expectedArgs: Seq[String], result: Either[Seq[String], Configuration]) extends (Seq[String] => Either[Seq[String], Configuration]) {
+    override def apply(args: Seq[String]): Either[Seq[String], Configuration] = {
       assert(args === expectedArgs)
       result
     }

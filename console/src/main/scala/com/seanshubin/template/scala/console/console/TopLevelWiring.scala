@@ -13,7 +13,7 @@ trait TopLevelWiring {
   lazy val devonMarshaller: DevonMarshaller = DevonMarshallerWiring.Default
   lazy val charset: Charset = StandardCharsets.UTF_8
   lazy val notifications: Notifications = new LineEmittingNotifications(devonMarshaller, emitLine)
-  lazy val configurationFactory: ConfigurationFactory = new ConfigurationFactoryImpl(
+  lazy val validateConfiguration: Seq[String] => Either[Seq[String], Configuration] = new ValidateConfiguration(
     files, devonMarshaller, charset)
   lazy val createRunner: Configuration => Runnable = (theConfiguration) => {
     new AfterConfigurationWiring {
@@ -21,5 +21,5 @@ trait TopLevelWiring {
     }.runner
   }
   lazy val runner: Runnable = new ConfigurationLoader(
-    commandLineArguments, configurationFactory, createRunner, notifications)
+    commandLineArguments, validateConfiguration, createRunner, notifications)
 }

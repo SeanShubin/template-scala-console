@@ -5,14 +5,14 @@ import java.nio.file.Paths
 
 import com.seanshubin.devon.core.devon.DevonMarshaller
 
-class ConfigurationFactoryImpl(files: FilesContract,
-                               devonMarshaller: DevonMarshaller,
-                               charset: Charset) extends ConfigurationFactory {
+class ValidateConfiguration(files: FilesContract,
+                            devonMarshaller: DevonMarshaller,
+                            charset: Charset) extends (Seq[String] => Either[Seq[String], Configuration])  {
   private val sampleConfiguration: Configuration = Configuration(
     greetingTarget = "world"
   )
 
-  override def validate(args: Seq[String]): Either[Seq[String], Configuration] = {
+  override def apply(args: Seq[String]): Either[Seq[String], Configuration] = {
     if (args.length == 1) {
       val configFilePath = Paths.get(args(0))
       try {

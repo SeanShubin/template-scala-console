@@ -6,7 +6,7 @@ import java.nio.file.{LinkOption, Path, Paths}
 import com.seanshubin.devon.core.devon.DevonMarshallerWiring
 import org.scalatest.FunSuite
 
-class ConfigurationFactoryImplTest extends FunSuite {
+class ValidateConfigurationTest extends FunSuite {
   test("complete configuration") {
     val content =
       """{
@@ -16,8 +16,8 @@ class ConfigurationFactoryImplTest extends FunSuite {
 
     val expected = Right(Configuration("world"))
 
-    val configurationFactory = createConfigurationFactory(configFileName = "environment.txt", content = content, exists = true)
-    val actual = configurationFactory.validate(Seq("environment.txt"))
+    val validateConfiguration = createValidateConfigurationFunction(configFileName = "environment.txt", content = content, exists = true)
+    val actual = validateConfiguration(Seq("environment.txt"))
     assert(actual === expected)
   }
 
@@ -31,8 +31,8 @@ class ConfigurationFactoryImplTest extends FunSuite {
 
     val expected = Left(Seq("Configuration file named 'environment.txt' not found"))
 
-    val configurationFactory = createConfigurationFactory(configFileName = "environment.txt", content = content, exists = false)
-    val actual = configurationFactory.validate(Seq("environment.txt"))
+    val validateConfiguration = createValidateConfigurationFunction(configFileName = "environment.txt", content = content, exists = false)
+    val actual = validateConfiguration(Seq("environment.txt"))
     assert(actual === expected)
   }
 
@@ -41,17 +41,17 @@ class ConfigurationFactoryImplTest extends FunSuite {
 
     val expected = Left(Seq("There was a problem reading the configuration file 'environment.txt': Could not match 'element', expected one of: map, array, string, null"))
 
-    val configurationFactory = createConfigurationFactory(configFileName = "environment.txt", content = content, exists = true)
-    val actual = configurationFactory.validate(Seq("environment.txt"))
+    val validateConfiguration = createValidateConfigurationFunction(configFileName = "environment.txt", content = content, exists = true)
+    val actual = validateConfiguration(Seq("environment.txt"))
     assert(actual === expected)
   }
 
-  def createConfigurationFactory(configFileName: String, content: String, exists: Boolean): ConfigurationFactory = {
+  def createValidateConfigurationFunction(configFileName: String, content: String, exists: Boolean): Seq[String] => Either[Seq[String], Configuration] = {
     val configFilePath = Paths.get(configFileName)
     val devonMarshaller = DevonMarshallerWiring.Default
     val fileSystem = new FakeFileSystem(configFilePath = configFilePath, content = content, exists = exists)
-    val configurationFactory = new ConfigurationFactoryImpl(fileSystem, devonMarshaller, charset)
-    configurationFactory
+    val validateConfiguration = new ValidateConfiguration(fileSystem, devonMarshaller, charset)
+    validateConfiguration
   }
 
   val charset: Charset = StandardCharsets.UTF_8
