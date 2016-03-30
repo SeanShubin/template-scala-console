@@ -1,12 +1,9 @@
 package com.seanshubin.template.scala.console.core
 
-import java.time.Duration
-
-class Runner(target: String, emitLine: String => Unit, measureTime: (( => Unit) => Duration), notifications: Notifications) extends Runnable {
+class Runner(target: String, emitLine: String => Unit, trackTime: String => (=> Unit) => Unit) extends Runnable {
   override def run(): Unit = {
-    val timeTaken = measureTime {
+    trackTime("total") {
       emitLine(s"Hello, $target!")
     }
-    notifications.timeTaken(timeTaken)
   }
 }

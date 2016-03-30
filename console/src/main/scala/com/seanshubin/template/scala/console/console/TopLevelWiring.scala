@@ -16,7 +16,7 @@ trait TopLevelWiring {
   lazy val validateConfiguration: Seq[String] => Either[Seq[String], Configuration] = new ValidateConfiguration(
     files, devonMarshaller, charset)
   lazy val createRunner: Configuration => Runnable = (theConfiguration) => {
-    new AfterConfigurationWiring {
+    new ConfigurationLifecycle {
       override def configuration: Configuration = theConfiguration
     }.runner
   }

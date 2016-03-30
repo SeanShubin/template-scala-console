@@ -49,7 +49,9 @@ class ConfigurationLoaderTest extends FunSuite {
 
     override def topLevelException(exception: Throwable): Unit = append("topLevelException", exception)
 
-    override def timeTaken(duration: Duration): Unit = append("timeTaken", duration)
+    override def startTiming(caption: String): Unit = ???
+
+    override def endTiming(caption: String, duration: Duration): Unit = ???
   }
 
   class FakeRunner(sideEffects: ArrayBuffer[(String, Any)]) extends Runnable {

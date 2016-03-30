@@ -7,7 +7,7 @@ import com.seanshubin.devon.core.devon.DevonMarshaller
 
 class ValidateConfiguration(files: FilesContract,
                             devonMarshaller: DevonMarshaller,
-                            charset: Charset) extends (Seq[String] => Either[Seq[String], Configuration])  {
+                            charset: Charset) extends (Seq[String] => Either[Seq[String], Configuration]) {
   private val sampleConfiguration: Configuration = Configuration(
     greetingTarget = "world"
   )
