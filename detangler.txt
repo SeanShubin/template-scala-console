@@ -1,0 +1,15 @@
+{
+  reportDir target/detangled/
+  searchPaths [
+    console/target/template-scala-console.jar
+  ]
+  level 2
+  startsWith {
+    include [[com seanshubin template scala console]]
+    drop [[com seanshubin template scala console]]
+    exclude []
+  }
+  allowedInCycle [
+  ]
+  canFailBuild true
+}
