@@ -16,7 +16,7 @@
             <scope>test</scope>
         </dependency>
     </dependencies>
-    <!--<parent></parent>-->
+    <!--<parent>...</parent>-->
     <dependencyManagement>
         <dependencies>
             <dependency>
@@ -121,24 +121,24 @@
             </plugins>
         </pluginManagement>
     </build>
-    <!--<reporting></reporting>-->
+    <!--<reporting>...</reporting>-->
 
     <!-- More Project Information -->
     <name>${project.groupId}:${project.artifactId}</name>
-    <!--<description></description>-->
-    <!--<url></url>-->
-    <!--<inceptionYear></inceptionYear>-->
-    <!--<licenses></licenses>-->
-    <!--<organization></organization>-->
-    <!--<developers></developers>-->
-    <!--<contributors></contributors>-->
+    <!--<description>...</description>-->
+    <!--<url>...</url>-->
+    <!--<inceptionYear>...</inceptionYear>-->
+    <!--<licenses>...</licenses>-->
+    <!--<organization>...</organization>-->
+    <!--<developers>...</developers>-->
+    <!--<contributors>...</contributors>-->
 
     <!-- Environment Settings -->
-    <!--<issueManagement></issueManagement>-->
-    <!--<ciManagement></ciManagement>-->
-    <!--<mailingLists></mailingLists>-->
-    <!--<scm></scm>-->
-    <!--<prerequisites></prerequisites>-->
+    <!--<issueManagement>...</issueManagement>-->
+    <!--<ciManagement>...</ciManagement>-->
+    <!--<mailingLists>...</mailingLists>-->
+    <!--<scm>...</scm>-->
+    <!--<prerequisites>...</prerequisites>-->
     <repositories>
         <repository>
             <id>sean</id>
@@ -168,5 +168,5 @@
             <url>http://thoughtfulcraftsmanship.com/nexus/content/repositories/sean-snapshots</url>
         </snapshotRepository>
     </distributionManagement>
-    <!--<profiles></profiles>-->
+    <!--<profiles>...</profiles>-->
 </project>
