@@ -2,8 +2,7 @@ package com.seanshubin.template.scala.console.console
 
 import java.nio.charset.{Charset, StandardCharsets}
 
-import com.seanshubin.devon.domain.DevonMarshallerWiring
-import com.seanshubin.devon.parserules.DevonMarshaller
+import com.seanshubin.devon.domain.{DevonMarshaller, DevonMarshallerWiring}
 import com.seanshubin.template.scala.console.core._
 
 trait TopLevelWiring {

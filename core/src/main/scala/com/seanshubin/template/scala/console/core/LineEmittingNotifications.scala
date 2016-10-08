@@ -3,7 +3,7 @@ package com.seanshubin.template.scala.console.core
 import java.io.{PrintWriter, StringWriter}
 import java.time.Duration
 
-import com.seanshubin.devon.parserules.DevonMarshaller
+import com.seanshubin.devon.domain.DevonMarshaller
 
 class LineEmittingNotifications(devonMarshaller: DevonMarshaller, emit: String => Unit) extends Notifications {
   private val timingLock = new Object

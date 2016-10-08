@@ -3,7 +3,7 @@ package com.seanshubin.template.scala.console.core
 import java.nio.charset.Charset
 import java.nio.file.Paths
 
-import com.seanshubin.devon.parserules.DevonMarshaller
+import com.seanshubin.devon.domain.DevonMarshaller
 
 class ValidateConfiguration(files: FilesContract,
                             devonMarshaller: DevonMarshaller,
