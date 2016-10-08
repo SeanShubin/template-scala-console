@@ -3,7 +3,7 @@ package com.seanshubin.template.scala.console.core
 import java.nio.charset.{Charset, StandardCharsets}
 import java.nio.file.{LinkOption, Path, Paths}
 
-import com.seanshubin.devon.core.devon.DevonMarshallerWiring
+import com.seanshubin.devon.domain.DevonMarshallerWiring
 import org.scalatest.FunSuite
 
 class ValidateConfigurationTest extends FunSuite {

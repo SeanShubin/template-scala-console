@@ -2,7 +2,8 @@ package com.seanshubin.template.scala.console.console
 
 import java.time.{Clock, Duration}
 
-import com.seanshubin.devon.core.devon.{DevonMarshaller, DevonMarshallerWiring}
+import com.seanshubin.devon.domain.DevonMarshallerWiring
+import com.seanshubin.devon.parserules.DevonMarshaller
 import com.seanshubin.template.scala.console.core._
 
 trait ConfigurationLifecycle {

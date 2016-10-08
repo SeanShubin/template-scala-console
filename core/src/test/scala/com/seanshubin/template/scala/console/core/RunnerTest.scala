@@ -2,7 +2,7 @@ package com.seanshubin.template.scala.console.core
 
 import java.time.{Clock, Duration}
 
-import com.seanshubin.devon.core.devon.DevonMarshaller
+import com.seanshubin.devon.parserules.DevonMarshaller
 import org.scalatest.FunSuite
 
 import scala.collection.mutable.ArrayBuffer
