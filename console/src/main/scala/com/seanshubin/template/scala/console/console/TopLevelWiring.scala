@@ -3,7 +3,7 @@ package com.seanshubin.template.scala.console.console
 import java.nio.charset.{Charset, StandardCharsets}
 
 import com.seanshubin.devon.domain.{DevonMarshaller, DevonMarshallerWiring}
-import com.seanshubin.template.scala.console.core._
+import com.seanshubin.template.scala.console.domain._
 
 trait TopLevelWiring {
   def commandLineArguments: Seq[String]
