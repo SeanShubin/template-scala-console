@@ -1,5 +1,5 @@
 {
-  reportDir target/detangled/
+  reportDir target/detangler/
   searchPaths [
     console/target/template-scala-console.jar
   ]
