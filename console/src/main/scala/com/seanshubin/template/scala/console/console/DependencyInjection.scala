@@ -5,7 +5,7 @@ import java.nio.charset.{Charset, StandardCharsets}
 import com.seanshubin.devon.domain.{DevonMarshaller, DevonMarshallerWiring}
 import com.seanshubin.template.scala.console.domain._
 
-trait TopLevelWiring {
+trait DependencyInjection {
   def commandLineArguments: Seq[String]
 
   lazy val emitLine: String => Unit = println
