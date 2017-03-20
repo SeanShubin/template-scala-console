@@ -137,34 +137,8 @@
     <!--<mailingLists>...</mailingLists>-->
     <!--<scm>...</scm>-->
     <!--<prerequisites>...</prerequisites>-->
-    <repositories>
-        <repository>
-            <id>sean</id>
-            <name>sean</name>
-            <url>http://thoughtfulcraftsmanship.com/nexus/content/repositories/sean-snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </repository>
-    </repositories>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>sean</id>
-            <url>http://thoughtfulcraftsmanship.com/nexus/content/repositories/sean-snapshots</url>
-            <snapshots>
-                <enabled>true</enabled>
-            </snapshots>
-        </pluginRepository>
-        <pluginRepository>
-            <id>onejar</id>
-            <url>http://onejar-maven-plugin.googlecode.com/svn/mavenrepo</url>
-        </pluginRepository>
-    </pluginRepositories>
-    <distributionManagement>
-        <snapshotRepository>
-            <id>sean</id>
-            <url>http://thoughtfulcraftsmanship.com/nexus/content/repositories/sean-snapshots</url>
-        </snapshotRepository>
-    </distributionManagement>
+    <!--<repositories>...</repositories>-->
+    <!--<pluginRepositories>...</pluginRepositories>-->
+    <!--<distributionManagement>...</distributionManagement>-->
     <!--<profiles>...</profiles>-->
 </project>
